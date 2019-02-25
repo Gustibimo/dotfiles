@@ -240,7 +240,7 @@ set thesaurus+=~/.vim/mthes10/mthesaur.txt
 set wildmenu                " Show possible completions on command line
 set wildmode=list:longest,full " List all options and complete
 set wildignore=*.class,*.o,*~,*.pyc,.git,node_modules  " Ignore certain files in tab-completion
-
+set clipboard=unnamed
 " Essential for filetype plugins.
 filetype plugin indent on
 
