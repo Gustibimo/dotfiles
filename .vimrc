@@ -28,12 +28,38 @@ Plug 'tpope/vim-fireplace'
 Plug 'luochen1990/rainbow'
 Plug 'bhurlow/vim-parinfer'
 Plug 'clojure-vim/async-clj-omni'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'prabirshrestha/asyncomplete.vim'  
 Plug 'morhetz/gruvbox'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'mbbill/undotree'
+Plug 'dhleong/vim-hearth'
+Plug 'clojure-emacs/refactor-nrepl' 
+Plug 'dhleong/vim-mantel'
+Plug 'clojure-vim/vim-jack-in'
+Plug 'SevereOverfl0w/vim-replant', { 'do': ':UpdateRemotePlugins' }
+Plug 'tpope/vim-dispatch'
+Plug 'Olical/conjure', {'tag': 'v4.11.0'}
+Plug 'Olical/aniseed', { 'tag': 'v3.12.0' }
+Plug 'bakpakin/fennel.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'tpope/vim-surround' 
+"Plug 'axelf4/vim-strip-trailing-whitespace'
 call plug#end()
 
 
+set timeoutlen=1000 ttimeoutlen=0
+
+" rust
+let g:rustfmt_autosave = 1
+" aniseed
+let g:conjure#client#fennel#aniseed#aniseed_module_prefix = "aniseed."
+
+" undo tree
+nnoremap <F5> :UndotreeToggle<CR>
+"
 filetype plugin indent on
 syntax on
 
@@ -43,6 +69,14 @@ if need_to_install_plugins == 1
     echo "Done!"
     q
 endif
+
+" file finder
+nnoremap <C-p> :GFiles<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit'
+  \}
 
 " always show the status bar
 set laststatus=2
@@ -79,7 +113,7 @@ set t_ut=
 set cursorline
 
 " turn on line numbering
-set number
+set relativenumber
 
 " sane text files
 set fileformat=unix
@@ -96,7 +130,7 @@ set viminfo='25,\"50,n~/.viminfo
 autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
+autocmd FileType clojure nmap <buffer> cpP :Eval<cr>
  
 " auto-pairs
 au FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
@@ -146,7 +180,7 @@ filetype plugin indent on
 
 " lightline
 set noshowmode
-let g:lightline = { 'colorscheme': 'onedark' }
+let g:lightline = { 'colorscheme': 'gruvbox' }
 
 " code folding
 set foldmethod=indent
